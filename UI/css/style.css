@@ -180,6 +180,22 @@ form {
 .edit {
 	background-color: #253b4b;
 }
+.stat {
+	display: inline-block;
+	padding: 10px;
+	border-right: 1px solid #aaa; 
+}
+.stat .item {
+	font-size: 2em;
+	color: #fffaaa;
+
+}
+.container .stat:last-child {
+	border: none;
+}
+
+
+
 @media(max-width:768px){
 	.main, .login {
 		padding-top: 50px;
