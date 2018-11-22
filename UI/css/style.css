@@ -140,7 +140,46 @@ form {
 .vertical-spacer {
 	padding: 10px 0;
 }
-
+.record-group {
+	width: 600px;
+	text-align: center;
+	margin:50px auto;
+}
+.record-item {
+	padding: 15px 10px;
+	border-bottom: 1px solid #ddd;
+	text-align: left;
+	overflow: auto;
+}
+.record-item .title {
+	font-weight: 200;
+	width: 10%;
+	display: inline-block;
+	color: #fffaaa;
+}
+.record-item .content {
+	float: right;
+	width: 80%;
+	display: inline-block;
+}
+.record-group .record-item:last-child {
+	border: none;
+}
+.record-item button {
+	width: 40%;
+	display: inline-block;
+	text-align: center;
+	border-width: 1px;
+}
+.center {
+	text-align: center;
+}
+.delete {
+	background-color: #c84b3f;
+}
+.edit {
+	background-color: #253b4b;
+}
 @media(max-width:768px){
 	.main, .login {
 		padding-top: 50px;
@@ -155,8 +194,17 @@ form {
 		margin-top: 30px;
 	}
 	.record, .login, .sign {
-	background: transparent;
+		background: transparent;
 	}
+	.record-group {
+		width: 100%;
+	}
+	.record-item .content {
+		width: 70%;
+		display: inline-block;
+}
+
+
 
 }
 
@@ -186,5 +234,20 @@ form {
 	.main, .login {
 		padding-top: 10px;
 	}
+	.record-group {
+		width: 100%;
+	}
+	.record-item .title {
+		width: 100%;
+		display: block;
+	}
+	.record-item .content {
+		width: 100%;
+	}
+	.record-item button {
+		width: 100%;
+	}
+
+
 
 }
