@@ -31,7 +31,11 @@ nav select {
 a {
 	transition: all  ease-in-out 0.4s;
 }
-input, button {
+a:hover {
+	text-decoration:underline;
+	color: #ccc;
+}
+input, button, textarea, .signup select {
 	background:transparent;
   	border: 1px solid #ccc;
   	padding: 12px 25px;
@@ -42,6 +46,10 @@ input, button {
   	display: inline-block;
   	box-sizing: border-box;
     transition: all  ease-in-out 0.4s;
+}
+.signup option {
+	background-color:#000;
+	padding: 10px;
 }
 button {
   	border-radius: 10px;
@@ -94,13 +102,16 @@ form {
 .main h1, .signup h1, .login h1 {
 	font-size: 3em;
 }
-.main p {
+.main p, .signup p {
 	font-size: 1.2em;
 	width: 60%;
 	text-align: center;
 	margin:auto;
 	line-height: 2em;
 	text-shadow: 1px 1px 2px #111;
+}
+.signup p {
+	line-height: 1.8em;
 }
 .main button {
 	margin-top: 50px;
@@ -111,14 +122,24 @@ form {
 	background-position: bottom right;
 	padding-bottom: 100px;
 }
-
+.login {
+	background: url('../img/login.png') no-repeat;
+	background-position: bottom right;
+	padding-bottom: 200px;
+}
+.record {
+	background: url('../img/police.png') no-repeat;
+	background-position: bottom right;
+}
 .signup {
 	padding-top: 10px;
 }
 .signup button, .login button {
 	width: 100%;
 }
-
+.vertical-spacer {
+	padding: 10px 0;
+}
 
 @media(max-width:768px){
 	.main, .login {
@@ -133,6 +154,10 @@ form {
 	.main button {
 		margin-top: 30px;
 	}
+	.record, .login, .sign {
+	background: transparent;
+	}
+
 }
 
 @media(max-width:480px){
