@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ 	<title>iReporter - Create record</title>
+ 	<link rel="stylesheet" href="css/style.css">
+
+ </head>
+
+ <body>
+ 	<nav>
+ 		<div class="container">
+	 		<div class="logo"><a href="../index.html">iReporter</a></div>
+	 		<ul class="links">
+	 			<li><a href="profile.html">Profile</a></li>
+	 			<li><a href="logout.html">Logout</a></li>
+	 		</ul>
+	 		<select>
+	 			<option value="" selected="selected">Go to...</option>
+	 			<option value="profile.html">Profile</option>
+	 			<option value="logout.html">Logout</option>
+	 		</select>
+ 		</div>
+ 	</nav>
+
+ 	<section class="signup record">
+ 		<div class="container">
+ 			<h2>Create record</h2>
+ 			<p>Alert the authorities and the general public about any form of corruption. You can also report on things that needs government intervention. You can create a red-flag record (An incident linked to corruption) or intervention record (a call for a government agency to intervene e.g
+repair bad road sections, collapsed bridges, flooding e.t.c).</p>
+			<div class="vertical-spacer"></div>
+
+ 			<form>
+ 				<input type="text" name="title" placeholder="Record title">
+ 				<select name="record-type">
+ 					<option value=""selected="selected">Select record type</option>
+ 					<option value="red-flag" class="option-style">Red flag</option>
+ 					<option value="intervention" class="option-style">intervention</option>
+ 				</select>
+ 				<input type="text" name="longitude" placeholder="Location longitude">
+ 				<input type="email" name="latitude" placeholder="Location latitude">
+ 				<textarea name="comment" placeholder="Comment on this record (Add addtional info)"></textarea>
+	  			<button>Create record</button>
+			</form>
+ 		</div>
+ 	</section>
+ </body>
+</html>
