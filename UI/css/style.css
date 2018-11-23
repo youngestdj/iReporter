@@ -145,6 +145,10 @@ form {
 	text-align: center;
 	margin:50px auto;
 }
+.admin-record-group {
+	width: 80%;
+	margin: 30px auto;
+}
 .record-item {
 	padding: 15px 10px;
 	border-bottom: 1px solid #ddd;
@@ -162,7 +166,10 @@ form {
 	width: 80%;
 	display: inline-block;
 }
-.record-group .record-item:last-child {
+.admin-record-group .record-item {
+	padding:10px;
+}
+.record-group .record-item:last-child, .admin-record-group .record-item:last-child {
 	border: none;
 }
 .record-item button {
@@ -170,6 +177,19 @@ form {
 	display: inline-block;
 	text-align: center;
 	border-width: 1px;
+}
+.admin-record-group button {
+	width: 120px;
+	text-align: center;
+}
+button.fade {
+	cursor: not-allowed;
+	color: #ccc;
+	border-color: #ccc;
+	width: 200px;
+}
+button.fade:hover {
+	background-color:inherit;
 }
 .center {
 	text-align: center;
