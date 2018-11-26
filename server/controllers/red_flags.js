@@ -1,11 +1,11 @@
-const helper = require('../helper.js');
-const mockData = require('../mockdata.js');
+import redFlagFilled from '../helper';
+import redFlags from '../mockdata';
 
-exports.createRedFlag = (request, response) => {
-  if (!helper.redFlagFilled(request.body)) {
+export const createRedFlag = (request, response) => {
+  if (!redFlagFilled(request.body)) {
     response.status(422).json({ status: 422, error: 'invalid data' });
   } else {
-    const id = mockData.redFlags.length + 1;
+    const id = redFlags.length + 1;
     const title = request.body.title.trim();
     const dateObj = new Date();
     const createdOn = `${dateObj.getFullYear()} / ${(dateObj.getMonth() + 1)} / ${dateObj.getDate()}`;
@@ -19,7 +19,11 @@ exports.createRedFlag = (request, response) => {
       id, title, createdOn, status, createdBy, type, location, comment,
     };
 
-    mockData.redFlags.push(data);
+    redFlags.push(data);
     response.status(201).json({ status: 201, data: [{ id, message: 'created red-flag record' }] });
   }
+};
+
+export const getRedFlags = (request, response) => {
+  response.status(200).json({ status: 200, data: redFlags });
 };

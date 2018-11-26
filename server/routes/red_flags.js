@@ -1,9 +1,9 @@
-const express = require('express');
-const controller = require('../../server/controllers/red_flags.js');
+import express from 'express';
+import { createRedFlag, getRedFlags } from '../controllers/red_flags';
 
 const router = express.Router();
 
-// Home page route.
-router.post('/api/v1/red-flags', controller.createRedFlag);
+router.post('/api/v1/red-flags', createRedFlag);
+router.get('/api/v1/red-flags', getRedFlags);
 
 module.exports = router;
