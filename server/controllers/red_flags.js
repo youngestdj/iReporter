@@ -1,4 +1,4 @@
-import redFlagFilled from '../helper';
+import { redFlagFilled, validId, redFlagExists } from '../helper';
 import redFlags from '../mockdata';
 
 export const createRedFlag = (request, response) => {
@@ -26,4 +26,14 @@ export const createRedFlag = (request, response) => {
 
 export const getRedFlags = (request, response) => {
   response.status(200).json({ status: 200, data: redFlags });
+};
+
+export const getSpecificRedFlag = (request, response) => {
+  if (!validId(request.params.id)) {
+    response.status(422).json({ status: 422, error: 'Invalid URL' });
+  } else if (!redFlagExists(request.params.id, redFlags)) {
+    response.status(404).json({ status: 404, error: 'record not found' });
+  } else {
+    response.status(200).json({ status: 200, data: [redFlags[request.params.id - 1]] });
+  }
 };
