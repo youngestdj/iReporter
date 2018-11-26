@@ -1,0 +1,41 @@
+{
+  "name": "ireporter",
+  "version": "1.0.0",
+  "description": "iReporter enables every citizen to bring any form of corruption to the notice of appropriate authorities and the general public",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node server.js",
+    "test-init": "jasmine init",
+    "test": "jasmine tests/spec.*.js",
+    "build": "babel server -d lib",
+    "lint": "eslint ./server --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youngestdj/iReporter.git"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "Samuel Jesudunsin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youngestdj/iReporter/issues"
+  },
+  "homepage": "https://github.com/youngestdj/iReporter#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "jasmine": "^3.3.0",
+    "nodemon": "^1.18.6"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
