@@ -59,3 +59,12 @@ export const updateComment = (request, response) => {
     response.status(201).json({ status: 201, data: [{ id: request.params.id, message: 'Updated red-flag record’s comment' }] });
   }
 };
+
+export const deleteRedFlag = (request, response) => {
+  if (!redFlagExists(request.params.id, redFlags)) {
+    response.status(404).json({ status: 404, error: 'record not found' });
+  } else {
+    delete redFlags[request.params.id - 1];
+    response.status(200).json({ status: 200, data: [{ id: request.params.id, message: 'red-flag record has been deleted' }] });
+  }
+};
