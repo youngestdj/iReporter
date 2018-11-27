@@ -3,6 +3,6 @@ export const redFlagFilled = (obj) => {
   return true;
 };
 
-export const validId = id => (!(Number.isNaN(id)));
+export const validId = id => Number.isInteger(parseInt(id, 10));
 
 export const redFlagExists = (id, redFlags) => (!!(redFlags[id - 1]));
