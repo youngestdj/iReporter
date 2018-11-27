@@ -47,4 +47,15 @@ export const updateLocation = (request, response) => {
     redFlags[request.params.id - 1].location = request.body.location;
     response.status(201).json({ status: 201, data: [{ id: request.params.id, message: 'Updated red-flag record’s location' }] });
   }
-}
+};
+
+export const updateComment = (request, response) => {
+  if (!validId(request.params.id) || !request.body.comment) {
+    response.status(422).json({ status: 422, error: 'Invalid URL' });
+  } else if (!redFlagExists(request.params.id, redFlags)) {
+    response.status(404).json({ status: 404, error: 'record not found' });
+  } else {
+    redFlags[request.params.id - 1].comment = request.body.comment;
+    response.status(201).json({ status: 201, data: [{ id: request.params.id, message: 'Updated red-flag record’s comment' }] });
+  }
+};
