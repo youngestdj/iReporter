@@ -9,5 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const redFlag = require('./server/routes/red_flags.js');
 app.use('/', redFlag);
 
-app.listen(process.env.PORT || 3000);
+if (require.main === module) app.listen(process.env.PORT || 3001);
+
+//app.listen(process.env.PORT || 3000);
 export default app;
