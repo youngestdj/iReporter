@@ -2,7 +2,7 @@
 //import redFlags from '../mockdata';
 
 const helper = require('../helper.js');
-const mockData = require('../mockData.js')
+const mockData = require('../mockdata.js')
 
 exports.createRedFlag = (request, response) => {
   if (!helper.redFlagFilled(request.body)) {
