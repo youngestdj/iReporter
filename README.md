@@ -1,2 +1,3 @@
 # iReporter
+[![Build Status](https://travis-ci.com/youngestdj/iReporter.svg?branch=develop)](https://travis-ci.com/youngestdj/iReporter) [![Coverage Status](https://coveralls.io/repos/github/youngestdj/iReporter/badge.svg?branch=ch-add-unit-tests-162247054)](https://coveralls.io/github/youngestdj/iReporter?branch=ch-add-unit-tests-162247054) <a href="https://codeclimate.com/github/youngestdj/iReporter/test_coverage"><img src="https://api.codeclimate.com/v1/badges/75d056a46438dc517072/test_coverage" /></a>
 iReporter enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public.
