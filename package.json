@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node server.js",
     "test-init": "jasmine init",
-    "test": "babel-node node_modules/jasmine/bin/jasmine.js",
+    "test": "babel-node node_modules/jasmine/bin/jasmine.js tests/routes.js",
     "build": "babel server -d lib",
     "lint": "eslint ./server --fix",
     "coverage": "istanbul cover node_modules/jasmine/bin/jasmine.js tests/routes.js",
@@ -28,11 +28,14 @@
   "homepage": "https://github.com/youngestdj/iReporter#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-istanbul": "^0.12.2",
+    "babel-plugin-istanbul": "^5.1.0",
     "babel-preset-env": "^1.7.0",
     "coveralls": "^3.0.2",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "istanbul": "^0.4.5",
     "jasmine": "^3.3.0",
     "nodemon": "^1.18.6"
   },
