@@ -1,8 +1,8 @@
-export const redFlagFilled = (obj) => {
+exports.redFlagFilled = (obj) => {
   if (!obj.title || !obj.comment || !obj.location) return false;
   return true;
 };
 
-export const validId = id => Number.isInteger(parseInt(id, 10));
+exports.validId = id => Number.isInteger(parseInt(id, 10));
 
-export const redFlagExists = (id, redFlags) => (!!(redFlags[id - 1]));
+exports.redFlagExists = (id, redFlags) => (!!(redFlags[id - 1]));

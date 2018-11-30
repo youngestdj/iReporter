@@ -1,13 +1,18 @@
-import supertest from 'supertest';
-import app from '../server';
+//import supertest from 'supertest';
+//import app from '../server';
 
-const app1 = app.listen();
-afterAll(() => {
-      app1.close();
-});
+const supertest = require('supertest');
+const server = require('../server.js');
+
+const { app } = server;
 
 describe('Server', () => {
-  describe('GET /api/v1/red-flags', () => {   
+  describe('GET /api/v1/red-flags', () => {
+    const app1 = app.listen();
+    afterAll(() => {
+      app1.close();
+    });
+ 
     it('It should return 200 for successful request', async () => {
       await supertest(app1)
         .get('/api/v1/red-flags')
@@ -18,6 +23,10 @@ describe('Server', () => {
   });
 
   describe('POST /api/v1/red-flags', () => {
+    const app1 = app.listen();
+    afterAll(() => {
+      app1.close();
+    });
     const data = {
     	title: 'Test red-flag',
     	location: 'Test location',
@@ -47,6 +56,10 @@ describe('Server', () => {
 
 
   describe('GET /api/v1/red-flags/:id', () => {   
+    const app1 = app.listen();
+    afterAll(() => {
+      app1.close();
+    });
     it('It should return 200 for successful request', async () => {
       await supertest(app1)
         .get('/api/v1/red-flags/1')
@@ -73,6 +86,10 @@ describe('Server', () => {
   });
 
   describe('PATCH /api/v1/red-flags/:id/location', () => {
+    const app1 = app.listen();
+    afterAll(() => {
+      app1.close();
+    });
     const data = {
     	location: 'Another Test location',
     };
@@ -109,6 +126,10 @@ describe('Server', () => {
   });
 
   describe('PATCH /api/v1/red-flags/:id/comment', () => {
+    const app1 = app.listen();
+    afterAll(() => {
+      app1.close();
+    });
     const data = {
     	comment: 'Another Test location',
     };
@@ -145,6 +166,10 @@ describe('Server', () => {
   });
 
   describe('DELETE /api/v1/red-flags/:id', () => {   
+    const app1 = app.listen();
+    afterAll(() => {
+      app1.close();
+    });
     it('It should return 200 for successful request', async () => {
       await supertest(app1)
         .delete('/api/v1/red-flags/2')

@@ -1,4 +1,4 @@
-const redFlags = [
+exports.redFlags = [
   {
     id: 1,
     title: 'Sars beat my boyfriend up',
@@ -20,4 +20,3 @@ const redFlags = [
     comment: 'The community trash cans have been full for a few days and no waste disposal agency has been there to empty them. People have resorted to dumping garbage by the roadside and the whole street reeks. Kindly look into this.',
   },
 ];
-export default redFlags;
