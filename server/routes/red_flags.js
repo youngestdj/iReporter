@@ -1,18 +1,13 @@
-//import express from 'express';
-//import {
-//  createRedFlag, getRedFlags, getSpecificRedFlag, updateLocation, updateComment, deleteRedFlag,
-//} from '../controllers/red_flags';
+const express = require('express');
+const controller = require('../controllers/red_flags.js');
 
-const exp = require('express');
-const cont = require('../controllers/red_flags.js');
+const router = express.Router();
 
-const router = exp.Router();
-
-router.post('/api/v1/red-flags', cont.createRedFlag);
-router.get('/api/v1/red-flags', cont.getRedFlags);
-router.get('/api/v1/red-flags/:id', cont.getSpecificRedFlag);
-router.patch('/api/v1/red-flags/:id/location', cont.updateLocation);
-router.patch('/api/v1/red-flags/:id/comment', cont.updateComment);
-router.delete('/api/v1/red-flags/:id', cont.deleteRedFlag);
+router.post('/', controller.createRedFlag);
+router.get('/', controller.getRedFlags);
+router.get('/:id', controller.getSpecificRedFlag);
+router.patch('/:id/location', controller.updateLocation);
+router.patch('/:id/comment', controller.updateComment);
+router.delete('/:id', controller.deleteRedFlag);
 
 module.exports = router;
