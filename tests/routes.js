@@ -1,6 +1,3 @@
-//import supertest from 'supertest';
-//import app from '../server';
-
 const supertest = require('supertest');
 const server = require('../server.js');
 
@@ -12,8 +9,8 @@ describe('Server', () => {
     afterAll(() => {
       app1.close();
     });
- 
-    it('It should return 200 for successful request', async () => {
+
+    it('should return 200 for successful request', async () => {
       await supertest(app1)
         .get('/api/v1/red-flags')
         .expect((res) => {
@@ -28,9 +25,9 @@ describe('Server', () => {
       app1.close();
     });
     const data = {
-    	title: 'Test red-flag',
-    	location: 'Test location',
-    	comment: 'Test comment'
+      title: 'Test red-flag',
+      location: 'Test location',
+      comment: 'Test comment',
     };
 
     it('Should return 201 for content created', async () => {
@@ -55,12 +52,12 @@ describe('Server', () => {
   });
 
 
-  describe('GET /api/v1/red-flags/:id', () => {   
+  describe('GET /api/v1/red-flags/:id', () => {
     const app1 = app.listen();
     afterAll(() => {
       app1.close();
     });
-    it('It should return 200 for successful request', async () => {
+    it('should return 200 for successful request', async () => {
       await supertest(app1)
         .get('/api/v1/red-flags/1')
         .expect((res) => {
@@ -68,7 +65,7 @@ describe('Server', () => {
         });
     });
 
-    it('It should return 422 for invalid url', async () => {
+    it('should return 422 for invalid url', async () => {
       await supertest(app1)
         .get('/api/v1/red-flags/sfs')
         .expect((res) => {
@@ -76,7 +73,7 @@ describe('Server', () => {
         });
     });
 
-    it('It should return 404 for record not found', async () => {
+    it('should return 404 for record not found', async () => {
       await supertest(app1)
         .get('/api/v1/red-flags/100')
         .expect((res) => {
@@ -91,20 +88,20 @@ describe('Server', () => {
       app1.close();
     });
     const data = {
-    	location: 'Another Test location',
+      location: 'Another Test location',
     };
 
-    it('Should return 201 for content created', async () => {
+    it('should return 200 for successful request', async () => {
       await supertest(app1)
         .patch('/api/v1/red-flags/1/location')
         .send(data)
         .set('content-type', 'application/json')
         .expect((res) => {
-          expect(res.statusCode).toBe(201);
+          expect(res.statusCode).toBe(200);
         });
     });
 
-    it('Should return 422 for invalid data', async () => {
+    it('should return 422 for invalid data', async () => {
       await supertest(app1)
         .patch('/api/v1/red-flags/1/location')
         .send()
@@ -114,7 +111,7 @@ describe('Server', () => {
         });
     });
 
-   it('Should return 404 for invalid data', async () => {
+    it('should return 404 for invalid data', async () => {
       await supertest(app1)
         .patch('/api/v1/red-flags/100/location')
         .send(data)
@@ -134,17 +131,17 @@ describe('Server', () => {
     	comment: 'Another Test location',
     };
 
-    it('Should return 201 for content created', async () => {
+    it('should return 200 for successful request', async () => {
       await supertest(app1)
         .patch('/api/v1/red-flags/1/comment')
         .send(data)
         .set('content-type', 'application/json')
         .expect((res) => {
-          expect(res.statusCode).toBe(201);
+          expect(res.statusCode).toBe(200);
         });
     });
 
-    it('Should return 422 for invalid data', async () => {
+    it('should return 422 for invalid data', async () => {
       await supertest(app1)
         .patch('/api/v1/red-flags/1/comment')
         .send()
@@ -154,7 +151,7 @@ describe('Server', () => {
         });
     });
 
-   it('Should return 404 for record not found', async () => {
+    it('should return 404 for record not found', async () => {
       await supertest(app1)
         .patch('/api/v1/red-flags/100/comment')
         .send(data)
@@ -165,12 +162,12 @@ describe('Server', () => {
     });
   });
 
-  describe('DELETE /api/v1/red-flags/:id', () => {   
+  describe('DELETE /api/v1/red-flags/:id', () => {
     const app1 = app.listen();
     afterAll(() => {
       app1.close();
     });
-    it('It should return 200 for successful request', async () => {
+    it('should return 200 for successful request', async () => {
       await supertest(app1)
         .delete('/api/v1/red-flags/2')
         .expect((res) => {
@@ -178,7 +175,7 @@ describe('Server', () => {
         });
     });
 
-    it('It should return 404 for record not found', async () => {
+    it('should return 404 for record not found', async () => {
       await supertest(app1)
         .delete('/api/v1/red-flags/100')
         .expect((res) => {
@@ -186,5 +183,4 @@ describe('Server', () => {
         });
     });
   });
-
 });
