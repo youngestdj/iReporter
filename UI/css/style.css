@@ -30,6 +30,8 @@ nav select {
 }
 a {
 	transition: all  ease-in-out 0.4s;
+	color: #fff;
+	font-weight: 400;
 }
 a:hover {
 	text-decoration:underline;
@@ -55,15 +57,17 @@ a.button {
 	text-decoration: none;
 }
 button, .button {
-  	border-radius: 10px;
-  	border: 2px solid #fff;
   	font-weight:bold;
   	cursor: pointer;
   	padding: 15px 25px;
+  	background-color: #e2d754;
+  	color: #51455c;
+  	box-shadow: 0 12px 60px -7px #6f6603;
+  	font-size: 1.1em;
 }
 button:hover, .button:hover {
-  	border: 2px solid #ccc;
-  	background-color: rgba(255,255,255,0.2);
+  	background-color: #d1c643;
+  	color: #51455c;
 }
 form {
 	width: 400px;
@@ -78,7 +82,6 @@ footer {
 	margin-top: 20px;
 }
 footer a {
-	color: #fff;
 	margin: 10px;
 	padding-right: 10px;
 	border-right: 1px solid #fff;
@@ -88,10 +91,11 @@ footer a:last-child {
 	border:none;
 }
 
-.logo {
+.logo, .logo a {
 	font-size: 1.5em;
 	display: inline-block;
 	font-weight: bold;
+    text-shadow: 0 0 30px #333;
 }
 .links {
 	display: inline-block;
@@ -106,10 +110,20 @@ footer a:last-child {
 	display: inline-block;
 	margin-left: 20px;
 }
+
 .links a, .logo a {
 	color: #fff;
 	font-size: 1.1em;
 	text-decoration: none;
+}
+.links a {
+	color: #f8ef7c;
+	font-weight: 400;
+    border-bottom: 3px solid #e2d754;
+}
+.links a:hover {
+	color: #fff;
+    border-bottom: 3px solid #fff;
 }
 .container {
 	width: 85%;
@@ -161,13 +175,16 @@ footer a:last-child {
 	padding: 10px 0;
 }
 .record-group {
-	width: 600px;
+	width: 47%;
 	text-align: center;
-	margin:50px auto;
+	margin:10px auto;
+	display: inline-block;
 }
 .admin-record-group {
-	width: 80%;
-	margin: 30px auto;
+	width: 47%;
+	margin: 10px auto;
+	display: inline-block;
+	font-size: 0.95em;
 }
 .record-item {
 	padding: 15px 10px;
@@ -187,7 +204,10 @@ footer a:last-child {
 	display: inline-block;
 }
 .admin-record-group .record-item {
-	padding:10px;
+	padding:10px 0px;
+}
+.admin-record-group .record-item .content {
+	width: 70%;
 }
 .record-group .record-item:last-child, .admin-record-group .record-item:last-child {
 	border: none;
@@ -207,6 +227,10 @@ button.fade {
 	color: #ccc;
 	border-color: #ccc;
 	width: 200px;
+	box-shadow: none;
+	font-size: 0.9em;	
+	background-color:transparent;
+
 }
 button.fade:hover {
 	background-color:inherit;
@@ -220,20 +244,41 @@ button.fade:hover {
 .edit {
 	background-color: #253b4b;
 }
+.edit, .delete {
+	color: #fff;
+	box-shadow: none;
+	font-size: 0.9em;
+	font-weight:normal;
+}
 .stat {
 	display: inline-block;
 	padding: 10px;
-	border-right: 1px solid #aaa; 
+	border-right: 1px solid #aaa;
+	text-align: center;
+	color: rgb(244, 127, 84);
 }
 .stat .item {
-	font-size: 2em;
-	color: #fffaaa;
+	font-size: 1.5em;
+	color: #000;
+	font-weight:600;
 
 }
 .container .stat:last-child {
 	border: none;
 }
-
+.see-more {
+	color: #6df58e;
+	font-size: 0.9em;
+}
+.circle {
+	text-align: center;
+	vertical-align: middle;
+	line-height: 50px;
+	border-radius: 50%;
+	background-color:#fff;
+	height: 50px;
+	width: 50px;
+}
 
 
 @media(max-width:768px){
@@ -258,7 +303,11 @@ button.fade:hover {
 	.record-item .content {
 		width: 70%;
 		display: inline-block;
-}
+	}
+	.admin-record-group, .record-group {
+		width: 70%;
+	}
+
 
 
 
