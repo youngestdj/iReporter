@@ -3,17 +3,20 @@ const mockData = require('../mockdata.js');
 
 exports.createRedFlag = (request, response) => {
   if (!helper.redFlagFilled(request.body)) {
-    response.status(422).json({
-      status: 422,
+    response.status(400).json({
+      status: 400,
       error: 'invalid data',
+    });
+  } else if (helper.onlySpaces(request.body)) {
+    response.status(400).json({
+      status: 400,
+      error: 'Fields should contain actual characters and not only spaces',
     });
   } else {
     const id = mockData.redFlags.length + 1;
     const title = request.body.title.trim();
     const dateObj = new Date();
-    const createdOn = `${dateObj.getFullYear()} /
-    ${(dateObj.getMonth() + 1)} /
-    ${dateObj.getDate()}`;
+    const createdOn = `${dateObj.getFullYear()} / ${(dateObj.getMonth() + 1)} / ${dateObj.getDate()}`;
     const status = 'new';
     const createdBy = 1;
     const type = 'red-flag';
