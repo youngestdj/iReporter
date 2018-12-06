@@ -6,10 +6,10 @@
   "scripts": {
     "start": "babel-node server.js",
     "test-init": "jasmine init",
-    "test": "babel-node node_modules/jasmine/bin/jasmine.js tests/routes.js",
+    "test": "babel-node node_modules/jasmine/bin/jasmine.js spec/routes.spec.js",
     "build": "babel server -d lib",
     "lint": "eslint ./server --fix",
-    "coverage": "istanbul cover node_modules/jasmine/bin/jasmine.js tests/routes.js",
+    "coverage": "istanbul cover node_modules/jasmine/bin/jasmine.js spec/routes.spec.js",
     "report-coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
@@ -41,8 +41,11 @@
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
+    "pg": "^7.7.1",
     "supertest": "^3.3.0"
   }
 }

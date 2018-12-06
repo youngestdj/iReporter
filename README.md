@@ -9,9 +9,72 @@ The instructions below will guide you on how to run a copy of the project locall
 You need to have `node.js`  installed on your machine. Other `node` packages will be installed with `npm install`
 ### Installation
 Clone the repo to your machine and run `npm install` in your terminal
+### Running the app
+`npm start`
 ### Running the tests
 To run the tests type `npm run test` in your terminal.
+
+## Rest API
+### Get all red flag records
+`GET api/v1/red-flags`
+
+### Create a new red flag record
+`POST api/v1/red-flags`
+#### Request
+```
+{
+      "title": "Test red-flag",
+      "location": "Test location",
+      "comment": "Test comment",
+}
+```
+
+### Get a specific red flag record
+`GET api/v1/red-flags/:id`
+#### Request
+`GET api/v1/red-flags/1`
+
+### Update specific red flag record location
+`PATCH api/v1/red-flags/:id/location`
+#### Request
+`PATCH api/v1/red-flags/1/location`
+```
+{
+    "location":"6.5244° N, 3.3792° E"
+}
+```
+
+### Update specific red flag record comment
+`PATCH api/v1/red-flags/:id/comment`
+#### Request
+`PATCH api/v1/red-flags/1/comment`
+```
+{
+    "comment": "This new comment replaces the old one"
+}
+```
+
+### delete a specific red flag record
+`DELETE api/v1/red-flags/:id`
+#### Request
+`DELETE api/v1/red-flags/1`
+
+### Sign up
+`POST api/v1/signup`
+#### Request
+```
+{
+    "email": "email@domain.com",
+    "firstname": "firstname",
+    "lastname": "lastname",
+    "othernames": "Othernames",
+    "phonenumber": "12345678910",
+    "password": "pass",
+    "username": "username"
+}
+```
 ##### Links
-* https://youngestdj.github.io/Fast-Food-Fast - Live demo
+* https://youngestdj.github.io/iReporter - template url
+* https://jessam-ireporter.herokuapp.com - server url
 
 
