@@ -119,11 +119,9 @@ footer a:last-child {
 .links a {
 	color: #f8ef7c;
 	font-weight: 400;
-    border-bottom: 3px solid #e2d754;
 }
 .links a:hover {
 	color: #fff;
-    border-bottom: 3px solid #fff;
 }
 .container {
 	width: 85%;
@@ -181,8 +179,8 @@ footer a:last-child {
 	display: inline-block;
 }
 .admin-record-group {
-	width: 47%;
-	margin: 10px auto;
+	width: 40%;
+	margin: 30px;
 	display: inline-block;
 	font-size: 0.95em;
 }
