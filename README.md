@@ -60,7 +60,7 @@ To run the tests type `npm run test` in your terminal.
 `DELETE api/v1/red-flags/1`
 
 ### Sign up
-`POST api/v1/signup`
+`POST api/v1/auth/signup`
 #### Request
 ```
 {
