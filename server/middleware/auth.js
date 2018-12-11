@@ -1,4 +1,4 @@
-import { jwt } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const signToken = async (obj) => {
   const token = jwt.sign({
