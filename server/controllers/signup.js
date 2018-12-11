@@ -1,10 +1,19 @@
-const bcrypt = require('bcryptjs');
-const models = require('../models/signup.js');
-const helper = require('../helper.js');
+import bcrypt from 'bcryptjs';
+import {
+  fieldsAreFilled, fieldsAreNotLetters, usernameExists, signUserUp,
+} from '../models/signup';
+import { userExists, isEmail } from '../helper';
+import signToken from '../middleware/auth';
 
-exports.signUserUp = async (request, response) => {
+/**
+ * Sign up a user
+ * @param  {object} request  http request object
+ * @param  {object} response http response object
+ * @return {object}          user instance and status code
+ */
+const signUp = async (request, response) => {
   // check if all fields are filled
-  const validData = await models.fieldsAreFilled(request.body);
+  const validData = await fieldsAreFilled(request.body);
   if (!validData) {
     response.status(400).json({
       status: 400,
@@ -14,18 +23,18 @@ exports.signUserUp = async (request, response) => {
   }
 
   // check if all alphabetic fields are valid
-  const fieldsAreNotLetters = await models.fieldsAreNotLetters(request.body);
-  if (fieldsAreNotLetters) {
+  const validFields = await fieldsAreNotLetters(request.body);
+  if (validFields) {
     response.status(422).json({
       status: 422,
-      error: fieldsAreNotLetters,
+      error: validFields,
     });
     return;
   }
 
 
   // check if email is valid
-  if (!helper.isEmail(request.body.email)) {
+  if (!isEmail(request.body.email)) {
     response.status(422).json({
       status: 422,
       error: 'Invalid email',
@@ -34,8 +43,8 @@ exports.signUserUp = async (request, response) => {
   }
 
   // check if email does not exist in the database already
-  const userExists = await models.userExists(request.body.email);
-  if (userExists) {
+  const existingUser = await userExists(request.body.email);
+  if (existingUser) {
     response.status(409).json({
       status: 409,
       error: 'User already exists',
@@ -43,9 +52,9 @@ exports.signUserUp = async (request, response) => {
     return;
   }
 
- // check if username does not exist in the database already
-  const usernameExists = await models.usernameExists(request.body.username);
-  if (usernameExists) {
+  // check if username does not exist in the database already
+  const validUsername = await usernameExists(request.body.username);
+  if (validUsername) {
     response.status(409).json({
       status: 409,
       error: 'Username already exists. Pleasee choose another one',
@@ -72,13 +81,20 @@ exports.signUserUp = async (request, response) => {
     registered: regDate,
   };
 
-  await models.signUserUp(data);
+  const id = await signUserUp(data);
   await delete data.password;
+  const token = await signToken(data);
+
+  data.id = id;
+  data.isadmin = 'false';
 
   response.status(201).json({
     status: 201,
     data: [{
+      token,
       user: data,
     }],
   });
 };
+
+export default signUp;
