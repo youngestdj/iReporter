@@ -1,15 +1,14 @@
-const supertest = require('supertest');
-const server = require('../server.js');
+import supertest from 'supertest';
+import 'babel-polyfill';
+import app from '../../server';
 
-const { app } = server;
+const appInstance = app.listen();
+afterAll(() => {
+  appInstance.close();
+});
 
 describe('Server', () => {
   describe('GET /api/v1/red-flags', () => {
-    const appInstance = app.listen();
-    afterAll(() => {
-      appInstance.close();
-    });
-
     it('should return 200 for successful request', async () => {
       await supertest(appInstance)
         .get('/api/v1/red-flags')
@@ -20,10 +19,6 @@ describe('Server', () => {
   });
 
   describe('POST /api/v1/red-flags', () => {
-    const appInstance = app.listen();
-    afterAll(() => {
-      appInstance.close();
-    });
     const data = {
       title: 'Test red-flag',
       location: 'Test location',
@@ -53,10 +48,6 @@ describe('Server', () => {
 
 
   describe('GET /api/v1/red-flags/:id', () => {
-    const appInstance = app.listen();
-    afterAll(() => {
-      appInstance.close();
-    });
     it('should return 200 for successful request', async () => {
       await supertest(appInstance)
         .get('/api/v1/red-flags/1')
@@ -83,10 +74,6 @@ describe('Server', () => {
   });
 
   describe('PATCH /api/v1/red-flags/:id/location', () => {
-    const appInstance = app.listen();
-    afterAll(() => {
-      appInstance.close();
-    });
     const data = {
       location: 'Another Test location',
     };
@@ -123,10 +110,6 @@ describe('Server', () => {
   });
 
   describe('PATCH /api/v1/red-flags/:id/comment', () => {
-    const appInstance = app.listen();
-    afterAll(() => {
-      appInstance.close();
-    });
     const data = {
     	comment: 'Another Test location',
     };
@@ -163,10 +146,6 @@ describe('Server', () => {
   });
 
   describe('DELETE /api/v1/red-flags/:id', () => {
-    const appInstance = app.listen();
-    afterAll(() => {
-      appInstance.close();
-    });
     it('should return 200 for successful request', async () => {
       await supertest(appInstance)
         .delete('/api/v1/red-flags/2')

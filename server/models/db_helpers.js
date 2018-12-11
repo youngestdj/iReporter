@@ -1,12 +1,13 @@
-const { Pool } = require('pg');
-const env = require('dotenv').config();
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
 
-const config = {
+dotenv.config();
+
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-};
+});
 
-exports.insert = async (data, table) => {
-  const pool = new Pool(config);
+export const insert = async (data, table) => {
   // convert object keys to array then to a single string seperated by commas
   const fields = Object.keys(data).join();
 
@@ -20,14 +21,12 @@ exports.insert = async (data, table) => {
     if (prepQuery === '') prepQuery = `$${i}`;
     else prepQuery = `${prepQuery}, $${i}`;
   }
-  const text = `INSERT INTO ${table}(${fields}) VALUES(${prepQuery})`;
-
-  await pool.query(text, values);
-  await pool.end();
+  const text = `INSERT INTO ${table}(${fields}) VALUES(${prepQuery}) RETURNING id`;
+  const res = await pool.query(text, values);
+  return res.rows[0].id;
 };
 
-exports.update = async (id, data, table) => {
-  const pool = new Pool(config);
+export const update = async (id, data, table) => {
   const entries = Object.entries(data);
   let queryString = '';
   entries.map((entry) => {
@@ -36,14 +35,9 @@ exports.update = async (id, data, table) => {
   });
   const text = `UPDATE ${table} SET ${queryString} WHERE id=${id}`;
   await pool.query(text);
-  await pool.end();
 };
 
-exports.deleteRow = async (id, table) => {
-  const pool = new Pool(config);
+export const deleteRow = async (id, table) => {
   const query = `DELETE from ${table} where id='${id}'`;
   await pool.query(query);
-  await pool.end();
 };
-
-// const data = { ome: 'lol', two: 'lmao', three: 'rotfl' }
