@@ -11,22 +11,15 @@ export const redFlagFilled = (obj) => {
   if (!obj.title || !obj.comment || !obj.location) {
     return false;
   }
-
-  let str = obj.title.split(' ').join('');
-  if (str.length < 1) {
+  if (obj.title.trim().length < 1) {
     return false;
   }
-
-  str = obj.comment.split(' ').join('');
-  if (str.length < 1) {
+  if (obj.comment.trim().length < 1) {
     return false;
   }
-
-  str = obj.location.split(' ').join('');
-  if (str.length < 1) {
+  if (obj.location.trim().length < 1) {
     return false;
   }
-
   return true;
 };
 
@@ -58,8 +51,43 @@ export const validLogin = async (email, password) => {
   return false;
 };
 
-export const userExists = async (email) => {
-  const query = `SELECT email from ireporter_users WHERE email='${email}'`;
+export const fieldExists = async (column, value) => {
+  const query = `SELECT email from ireporter_users WHERE ${column}='${value}'`;
   const result = await pool.query(query);
   return result.rows[0];
+};
+
+export const fieldsAreFilled = (requestBody) => {
+  if (requestBody.firstname && requestBody.lastname) {
+    if (requestBody.email && requestBody.phonenumber) {
+      if (requestBody.password && requestBody.username) {
+        if (requestBody.othernames) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+};
+
+export const fieldsAreNotLetters = async (requestBody) => {
+  if (!isLetter(requestBody.firstname)) {
+    return 'Invalid firstname. Please enter only letters';
+  }
+  if (!isLetter(requestBody.lastname)) {
+    return 'Invalid lastname. Please enter only letters';
+  }
+  if (!isLetter(requestBody.othernames)) {
+    return 'Invalid other names. Please enter only letters';
+  }
+  if (!isAlphaNumeric(requestBody.username)) {
+    return 'Invalid username. Username should only contain letters and numbers';
+  }
+  return false;
+};
+
+export const dateString = () => {
+  // set date up
+  const dateObj = new Date();
+  return `${dateObj.getFullYear()} / ${(dateObj.getMonth() + 1)} / ${dateObj.getDate()}`;
 };
