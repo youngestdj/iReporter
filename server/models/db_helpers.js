@@ -29,7 +29,7 @@ export const insert = async (data, table) => {
 export const update = async (id, data, table) => {
   const entries = Object.entries(data);
   let queryString = '';
-  entries.map((entry) => {
+  entries.forEach((entry) => {
     if (queryString === '') queryString = `${entry[0]} = '${entry[1]}'`;
     else queryString = `${queryString}, ${entry[0]} = '${entry[1]}'`;
   });

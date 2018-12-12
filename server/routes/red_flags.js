@@ -1,13 +1,13 @@
-const express = require('express');
-const controller = require('../controllers/red_flags.js');
+import express from 'express';
+import RedFlag from '../controllers/red_flags';
 
 const router = express.Router();
 
-router.post('/', controller.createRedFlag);
-router.get('/', controller.getRedFlags);
-router.get('/:id', controller.getSpecificRedFlag);
-router.patch('/:id/location', controller.updateLocation);
-router.patch('/:id/comment', controller.updateComment);
-router.delete('/:id', controller.deleteRedFlag);
+router.post('/', RedFlag.createRedFlag);
+router.get('/', RedFlag.getRedFlags);
+router.get('/:id', RedFlag.getSpecificRedFlag);
+router.patch('/:id/location', RedFlag.updateLocation);
+router.patch('/:id/comment', RedFlag.updateComment);
+router.delete('/:id', RedFlag.deleteRedFlag);
 
 module.exports = router;

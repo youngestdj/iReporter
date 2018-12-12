@@ -2,12 +2,12 @@ import supertest from 'supertest';
 import 'babel-polyfill';
 import app from '../../server';
 
-const appInstance = app.listen();
-afterAll(() => {
-  appInstance.close();
-});
 
 describe('Server', () => {
+  const appInstance = app.listen();
+  afterAll(() => {
+    appInstance.close();
+  });
   describe('GET /api/v1/red-flags', () => {
     it('should return 200 for successful request', async () => {
       await supertest(appInstance)
@@ -111,7 +111,7 @@ describe('Server', () => {
 
   describe('PATCH /api/v1/red-flags/:id/comment', () => {
     const data = {
-    	comment: 'Another Test location',
+      comment: 'Another Test location',
     };
 
     it('should return 200 for successful request', async () => {

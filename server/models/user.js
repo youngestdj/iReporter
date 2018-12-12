@@ -4,10 +4,20 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-const getUser = async (email) => {
-  const query = `SELECT * from ireporter_users WHERE email = '${email}'`;
-  const result = await pool.query(query);
-  return result.rows[0];
-};
+/**
+ * User model class
+ */
+class UserModel {
+  /**
+   * Return a user object
+   * @param  {string} email user email
+   * @return {object}       user object
+   */
+  static async getUser(email) {
+    const query = `SELECT * from ireporter_users WHERE email = '${email}'`;
+    const result = await pool.query(query);
+    return result.rows[0];
+  }
+}
 
-export default getUser;
+export default UserModel;
