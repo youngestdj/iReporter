@@ -61,6 +61,8 @@ typings/
 # next.js build output
 .next
 
+lib
+
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db

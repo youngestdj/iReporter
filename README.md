@@ -73,8 +73,20 @@ To run the tests type `npm run test` in your terminal.
     "username": "username"
 }
 ```
+
+### Log in
+`POST api/v1/auth/login`
+#### Request
+```
+{
+    "email": "email@domain.com",
+    "password": "pass"
+}
+```
+
 ##### Links
 * https://youngestdj.github.io/iReporter - template url
 * https://jessam-ireporter.herokuapp.com - server url
+* https://www.pivotaltracker.com/n/projects/2226817 - Pivotal tracker board
 
 

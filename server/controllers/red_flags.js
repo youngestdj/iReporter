@@ -1,19 +1,22 @@
-const helper = require('../helper.js');
-const mockData = require('../mockdata.js');
+import {
+  redFlagFilled, validId, redFlagExists,
+} from '../helper';
+import redFlags from '../mockdata';
 
-exports.createRedFlag = (request, response) => {
-  if (!helper.redFlagFilled(request.body)) {
+/**
+ * Create a red flag record
+ * @param  {object} request  http request object
+ * @param  {object} response http response object 
+ * @return {object}          
+ */
+export const createRedFlag = (request, response) => {
+  if (!redFlagFilled(request.body)) {
     response.status(400).json({
       status: 400,
       error: 'invalid data',
     });
-  } else if (helper.onlySpaces(request.body)) {
-    response.status(400).json({
-      status: 400,
-      error: 'Fields should contain actual characters and not only spaces',
-    });
   } else {
-    const id = mockData.redFlags.length + 1;
+    const id = redFlags.length + 1;
     const title = request.body.title.trim();
     const dateObj = new Date();
     const createdOn = `${dateObj.getFullYear()} / ${(dateObj.getMonth() + 1)} / ${dateObj.getDate()}`;
@@ -27,7 +30,7 @@ exports.createRedFlag = (request, response) => {
       id, title, createdOn, status, createdBy, type, location, comment,
     };
 
-    mockData.redFlags.push(data);
+    redFlags.push(data);
     response.status(201).json({
       status: 201,
       data: [{
@@ -38,20 +41,32 @@ exports.createRedFlag = (request, response) => {
   }
 };
 
-exports.getRedFlags = (request, response) => {
+/**
+ * get all red flag records
+ * @param  {object} request  http request object
+ * @param  {object} response http response object
+ * @return {object}          
+ */
+export const getRedFlags = (request, response) => {
   response.status(200).json({
     status: 200,
-    data: mockData.redFlags,
+    data: redFlags,
   });
 };
 
-exports.getSpecificRedFlag = (request, response) => {
-  if (!helper.validId(request.params.id)) {
+/**
+ * get a specific red flag record
+ * @param  {object} request  http request object
+ * @param  {object} response http response object
+ * @return {object}          
+ */
+export const getSpecificRedFlag = (request, response) => {
+  if (!validId(request.params.id)) {
     response.status(422).json({
       status: 422,
       error: 'Invalid URL',
     });
-  } else if (!helper.redFlagExists(request.params.id, mockData.redFlags)) {
+  } else if (!redFlagExists(request.params.id, redFlags)) {
     response.status(404).json({
       status: 404,
       error: 'record not found',
@@ -59,24 +74,30 @@ exports.getSpecificRedFlag = (request, response) => {
   } else {
     response.status(200).json({
       status: 200,
-      data: [mockData.redFlags[request.params.id - 1]],
+      data: [redFlags[request.params.id - 1]],
     });
   }
 };
 
-exports.updateLocation = (request, response) => {
-  if (!helper.validId(request.params.id) || !request.body.location) {
+/**
+ * Update a record's location
+ * @param  {object} request  http request object
+ * @param  {object} response http response object
+ * @return {object}          
+ */
+export const updateLocation = (request, response) => {
+  if (!validId(request.params.id) || !request.body.location) {
     response.status(422).json({
       status: 422,
       error: 'Invalid URL',
     });
-  } else if (!helper.redFlagExists(request.params.id, mockData.redFlags)) {
+  } else if (!redFlagExists(request.params.id, redFlags)) {
     response.status(404).json({
       status: 404,
       error: 'record not found',
     });
   } else {
-    mockData.redFlags[request.params.id - 1].location = request.body.location;
+    redFlags[request.params.id - 1].location = request.body.location;
     response.status(200).json({
       status: 200,
       data: [{
@@ -87,19 +108,25 @@ exports.updateLocation = (request, response) => {
   }
 };
 
-exports.updateComment = (request, response) => {
-  if (!helper.validId(request.params.id) || !request.body.comment) {
+/**
+ * Update a record'scomment
+ * @param  {object} request  http request object
+ * @param  {object} response http response object
+ * @return {object}          
+ */
+export const updateComment = (request, response) => {
+  if (!validId(request.params.id) || !request.body.comment) {
     response.status(422).json({
       status: 422,
       error: 'Invalid URL',
     });
-  } else if (!helper.redFlagExists(request.params.id, mockData.redFlags)) {
+  } else if (!redFlagExists(request.params.id, redFlags)) {
     response.status(404).json({
       status: 404,
       error: 'record not found',
     });
   } else {
-    mockData.redFlags[request.params.id - 1].comment = request.body.comment;
+    redFlags[request.params.id - 1].comment = request.body.comment;
     response.status(200).json({
       status: 200,
       data: [{
@@ -110,14 +137,20 @@ exports.updateComment = (request, response) => {
   }
 };
 
-exports.deleteRedFlag = (request, response) => {
-  if (!helper.redFlagExists(request.params.id, mockData.redFlags)) {
+/**
+ * delete a red flag record
+ * @param  {object} request  http request
+ * @param  {object} response http response
+ * @return {object}          
+ */
+export const deleteRedFlag = (request, response) => {
+  if (!redFlagExists(request.params.id, redFlags)) {
     response.status(404).json({
       status: 404,
       error: 'record not found',
     });
   } else {
-    delete mockData.redFlags[request.params.id - 1];
+    delete redFlags[request.params.id - 1];
     response.status(200).json({
       status: 200,
       data: [{
