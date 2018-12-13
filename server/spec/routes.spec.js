@@ -109,6 +109,93 @@ describe('Server', () => {
     });
   });
 
+  describe('POST /api/v1/interventions', () => {
+    const data = {
+      title: 'Test intervention record',
+      location: 'Test location',
+      comment: 'Test comment',
+      createdby: 1,
+    };
+    const dataOnlySpaces = {
+      title: '   ',
+      location: '  ',
+      comment: '   ',
+    };
+    const dataNoTitle = {
+      location: 'Test location',
+      comment: 'Test comment',
+    };
+    const dataNoLocation = {
+      title: 'Test intervention',
+      comment: 'Test comment',
+    };
+    const dataNoComment = {
+      title: 'Test intervention',
+      location: 'Test location',
+    };
+
+    it('Should return 201 for content created', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/interventions')
+        .send(data)
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(201);
+        });
+    });
+
+    it('Should return 400 for invalid data', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/interventions')
+        .send()
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no title', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/interventions')
+        .send(dataNoTitle)
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no location', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/interventions')
+        .send(dataNoLocation)
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no comment', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/interventions')
+        .send(dataNoComment)
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no invalid data', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/interventions')
+        .send(dataOnlySpaces)
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+  });
 
   describe('GET /api/v1/red-flags/:id', () => {
     it('should return 200 for successful request', async () => {

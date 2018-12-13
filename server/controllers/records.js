@@ -20,7 +20,8 @@ class Records {
     }
     const title = request.body.title.trim();
     const createdOn = dateString();
-    const type = request.route.path.substr(1);
+    let type = request.route.path.substr(1);
+    if (type === 'interventions') type = 'intervention';
     const location = request.body.location.trim();
     const comment = request.body.comment.trim();
     const images = (request.body.images) ? request.body.images : '';
@@ -31,12 +32,14 @@ class Records {
       title, createdOn, type, location, comment, images, videos, createdBy,
     };
 
+    const message = `Created ${type} record`;
+
     const id = await RecordsModel.createRecord(data);
     return response.status(201).json({
       status: 201,
       data: [{
         id,
-        message: 'created red-flag record',
+        message,
       }],
     });
   }
