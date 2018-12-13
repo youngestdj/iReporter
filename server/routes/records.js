@@ -19,6 +19,7 @@ router.get('/interventions/:id', getRecordType, validateUrl, Records.getSpecific
 router.patch('/red-flags/:id/location', getRecordType, validateUrl, validateRecordType, Records.updateRecord);
 router.patch('/interventions/:id/location', getRecordType, validateUrl, validateRecordType, Records.updateRecord);
 router.patch('/red-flags/:id/status', Auth.verifyAdmin, getRecordType, validateUrl, validateRecordType, Records.updateRecord);
+router.patch('/interventions/:id/status', Auth.verifyAdmin, getRecordType, validateUrl, validateRecordType, Records.updateRecord);
 router.patch('/red-flags/:id/comment', getRecordType, validateUrl, validateRecordType, Records.updateRecord);
 router.patch('/interventions/:id/comment', getRecordType, validateUrl, validateRecordType, Records.updateRecord);
 router.delete('/red-flags/:id', getRecordType, validateUrl, validateRecordField, Records.deleteRecord);
