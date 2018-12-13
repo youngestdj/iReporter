@@ -82,10 +82,10 @@ class Signup {
 
     const id = await SignupModel.signUserUp(data);
     await delete data.password;
-    const token = await Auth.signToken(data);
-
     data.id = id;
     data.isadmin = 'false';
+    const token = await Auth.signToken(data);
+
 
     response.status(201).json({
       status: 201,

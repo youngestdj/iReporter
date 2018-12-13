@@ -27,6 +27,7 @@ class Records {
     const images = (request.body.images) ? request.body.images : '';
     const videos = (request.body.videos) ? request.body.videos : '';
     const createdBy = (request.body.createdby) ? request.body.createdby : request.userid;
+    console.log(createdBy);
 
     const data = {
       title, createdOn, type, location, comment, images, videos, createdBy,
