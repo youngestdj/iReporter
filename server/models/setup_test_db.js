@@ -59,7 +59,7 @@ const query5 = `INSERT into records(
 const query7 = `INSERT into records(
   createdOn, createdBy, type, location, comment, title) VALUES(
   'today', '1', 'intervention', 'Lagos', 'Test comment', 'Test title')`;
-const query6 = 'select id from records';
+const query6 = 'select id, type from records';
 
 
 pool.query(createTableUsers).then((res) => {

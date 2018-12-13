@@ -367,6 +367,56 @@ describe('Server', () => {
     });
   });
 
+  describe('PATCH /api/v1/interventions/:id/comment', () => {
+    const data = {
+      comment: 'Another Test comment',
+    };
+
+    it('should return 200 for successful request', async () => {
+      await supertest(appInstance)
+        .patch('/api/v1/interventions/4/comment')
+        .send(data)
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(200);
+        });
+    });
+
+    it('should return 422 for invalid data', async () => {
+      await supertest(appInstance)
+        .patch('/api/v1/interventions/4/comment')
+        .send()
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(422);
+        });
+    });
+
+    it('should return 404 for record not found', async () => {
+      await supertest(appInstance)
+        .patch('/api/v1/interventions/100/comment')
+        .send(data)
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(404);
+        });
+    });
+
+    it('should return 400 for invalid url', async () => {
+      await supertest(appInstance)
+        .patch('/api/v1/interventions/gbiy/comment')
+        .send(data)
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+  });
+
   describe('PATCH /api/v1/red-flags/:id/status', () => {
     const data = {
       status: 'Another Test status',
