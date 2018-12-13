@@ -20,6 +20,17 @@ describe('Server', () => {
         });
     });
   });
+  describe('GET /api/v1/interventions', () => {
+    it('should return 200 for successful request', async () => {
+      await supertest(appInstance)
+        .get('/api/v1/interventions')
+        .set('content-type', 'application/json')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(200);
+        });
+    });
+  });
 
   describe('POST /api/v1/red-flags', () => {
     const data = {
