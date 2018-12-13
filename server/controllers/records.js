@@ -51,7 +51,9 @@ class Records {
  * @return {object}          json object
  */
   static async getRecords(request, response) {
-    const records = await RecordsModel.getAllRecords(request.route.path.substr(1));
+    let type = request.route.path.substr(1);
+    if (type === 'interventions') type = 'intervention';
+    const records = await RecordsModel.getAllRecords(type);
     response.status(200).json({
       status: 200,
       data: records,
