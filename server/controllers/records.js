@@ -84,9 +84,19 @@ class Records {
     const data = {};
     if (request.recordField === 'comment') {
       data.comment = request.content;
-    } else {
+    } else if (request.recordField === 'location') {
       data.location = request.content;
+    } else {
+      data.status = request.content;
+      if (data.status !== 'draft' && data.status !== 'resolved'
+        && data.status !== 'under investigation' && data.status !== 'rejected') {
+        return response.status(400).json({
+          status: 400,
+          error: 'Status can only be updated as draft, resolved, under investigation or rejected',
+        });
+      }
     }
+
     await RecordsModel.updateField(request.params.id, data);
     const message = `Updated ${request.recordType} ${request.recordField}`;
     response.status(200).json({

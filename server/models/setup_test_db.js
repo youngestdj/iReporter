@@ -33,8 +33,12 @@ const createTableRecords = `CREATE TABLE records(
   )`;
 
 const query = `INSERT into ireporter_users(
+  email, firstname, lastname, othernames, username, registered, phonenumber, password, isadmin) VALUES(
+  'jessam@joyson.com', 'john', 'doe', 'jaime', 'lannister', 'today', '123456789', '${hashedPwd}', 'true')`;
+
+const query8 = `INSERT into ireporter_users(
   email, firstname, lastname, othernames, username, registered, phonenumber, password) VALUES(
-  'jessam@joyson.com', 'john', 'doe', 'jaime', 'lannister', 'today', '123456789', '${hashedPwd}')`;
+  'jessam1@joyson.com', 'john', 'doe', 'jaime', 'lannister', 'today', '123456789', '${hashedPwd}')`;
 
 const query1 = `INSERT into records(
   createdOn, createdBy, type, location, comment, title) VALUES(
@@ -66,8 +70,11 @@ pool.query(createTableUsers).then((res) => {
           pool.query(query3).then((res) => {
             pool.query(query4).then((res) => {
               pool.query(query5).then((res) => {
-                  pool.query(query7).then((res) => {
-                pool.query(query6).then(res => console.log(res));
+                pool.query(query7).then((res) => {
+                  pool.query(query8).then((res) => {
+                    pool.query(query6).then(res => console.log(res));
+                  });
+                });
               });
             });
           });
@@ -75,5 +82,4 @@ pool.query(createTableUsers).then((res) => {
       });
     });
   });
-});
 });
