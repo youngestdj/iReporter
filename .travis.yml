@@ -4,12 +4,16 @@ env:
 language: node_js
 node_js:
   - "8"
+services:
+  - postgresql
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - npm run build-app
   - npm run build
+  - psql -c 'CREATE database travis_ci_test;' -U postgres
+  - npm run setup-test-db
 script: npm run test
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

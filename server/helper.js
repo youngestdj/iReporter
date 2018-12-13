@@ -7,7 +7,7 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-export const redFlagFilled = (obj) => {
+export const recordFilled = (obj) => {
   if (!obj.title || !obj.comment || !obj.location) {
     return false;
   }
@@ -23,9 +23,10 @@ export const redFlagFilled = (obj) => {
   return true;
 };
 
-export const validId = id => Number.isInteger(parseInt(id, 10));
-
-export const redFlagExists = (id, redFlags) => (!!(redFlags[id - 1]));
+export const validId = (id) => {
+  const objRegExp = /^[0-9]+$/;
+  return objRegExp.test(id);
+};
 
 export const isLetter = (str) => {
   const objRegExp = /^[a-zA-Z\u00C0-\u00ff]+$/;
@@ -51,8 +52,14 @@ export const validLogin = async (email, password) => {
   return false;
 };
 
-export const fieldExists = async (column, value) => {
-  const query = `SELECT email from ireporter_users WHERE ${column}='${value}'`;
+export const fieldExists = async (column, value, table) => {
+  const query = `SELECT ${column} from ${table} WHERE ${column}='${value}'`;
+  const result = await pool.query(query);
+  return result.rows[0];
+};
+
+export const recordFieldExists = async (id, type) => {
+  const query = `SELECT id from records where id='${id}' AND type ='${type}'`;
   const result = await pool.query(query);
   return result.rows[0];
 };
@@ -90,4 +97,52 @@ export const dateString = () => {
   // set date up
   const dateObj = new Date();
   return `${dateObj.getFullYear()} / ${(dateObj.getMonth() + 1)} / ${dateObj.getDate()}`;
+};
+
+export const validateUrl = async (request, response, next) => {
+  if (!validId(request.params.id)) {
+    return response.status(400).json({
+      status: 400,
+      error: 'Invalid URL',
+    });
+  }
+  const idExists = await recordFieldExists(request.params.id, request.recordType);
+  if (!idExists) {
+    return response.status(404).json({
+      status: 404,
+      error: 'record not found',
+    });
+  }
+  next();
+};
+
+export const getRecordType = async (request, response, next) => {
+  const record = request.route.path.split('/');
+  const recordType = record[1];
+  const recordField = record[3];
+  request.recordType = recordType;
+  request.recordField = recordField;
+  next();
+};
+export const validateRecordType = async (request, response, next) => {
+  if ((request.recordField === 'location' && !request.body.location)
+    || (request.recordField === 'comment' && !request.body.comment)) {
+    return response.status(422).json({
+      status: 422,
+      error: 'Invalid data',
+    });
+  }
+  request.content = (request.body.comment) ? request.body.comment : request.body.location;
+  next();
+};
+
+export const validateRecordField = async (request, response, next) => {
+  const rowfieldExists = await recordFieldExists(request.params.id, request.recordType);
+  if (!rowfieldExists) {
+    return response.status(404).json({
+      status: 404,
+      error: 'record not found',
+    });
+  }
+  next();
 };

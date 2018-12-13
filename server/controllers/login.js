@@ -1,6 +1,6 @@
 import LoginModel from '../models/login';
 import { validLogin, fieldExists } from '../helper';
-import signToken from '../middleware/auth';
+import Auth from '../middleware/auth';
 import UserModel from '../models/user';
 
 /**
@@ -24,7 +24,7 @@ class Login {
       return;
     }
 
-    const validUser = await fieldExists('email', email);
+    const validUser = await fieldExists('email', email, 'ireporter_users');
     if (!validUser) {
       response.status(400).json({
         status: 400,
@@ -44,7 +44,7 @@ class Login {
 
     const userObj = await UserModel.getUser(email);
     delete userObj.password;
-    const token = await signToken(userObj);
+    const token = await Auth.signToken(userObj);
 
     response.status(200).json({
       status: 200,

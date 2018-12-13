@@ -11,7 +11,8 @@
     "build-app": "babel server.js -d lib",
     "lint": "eslint ./server --fix",
     "coverage": "istanbul cover node_modules/jasmine/bin/jasmine.js lib/server/spec/routes.spec.js",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "setup-test-db": "babel-node server/models/setup_test_db.js"
   },
   "repository": {
     "type": "git",
