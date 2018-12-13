@@ -7,7 +7,7 @@ import {
   fieldsAreNotLetters,
   dateString,
 } from '../helper';
-import signToken from '../middleware/auth';
+import Auth from '../middleware/auth';
 
 /**
  * Signup class
@@ -37,13 +37,13 @@ class Signup {
     }
 
     // check if email does not exist in the database already
-    const existingUser = await fieldExists('email', request.body.email);
+    const existingUser = await fieldExists('email', request.body.email, 'ireporter_users');
     if (existingUser) {
       return [409, 'User already exists'];
     }
 
     // check if username does not exist in the database already
-    const validUsername = await fieldExists('username', request.body.username);
+    const validUsername = await fieldExists('username', request.body.username, 'ireporter_users');
     if (validUsername) {
       return [409, 'Username already exists. Pleasee choose another one'];
     }
@@ -82,7 +82,7 @@ class Signup {
 
     const id = await SignupModel.signUserUp(data);
     await delete data.password;
-    const token = await signToken(data);
+    const token = await Auth.signToken(data);
 
     data.id = id;
     data.isadmin = 'false';
