@@ -237,6 +237,35 @@ describe('Server', () => {
     });
   });
 
+  describe('GET /api/v1/interventions/:id', () => {
+    it('should return 200 for successful request', async () => {
+      await supertest(appInstance)
+        .get('/api/v1/interventions/4')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(200);
+        });
+    });
+
+    it('should return 400 for invalid url', async () => {
+      await supertest(appInstance)
+        .get('/api/v1/interventions/sfs')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+
+    it('should return 404 for record not found', async () => {
+      await supertest(appInstance)
+        .get('/api/v1/interventions/100')
+        .set('x-access-token', token)
+        .expect((res) => {
+          expect(res.statusCode).toBe(404);
+        });
+    });
+  });
+
   describe('PATCH /api/v1/red-flags/:id/location', () => {
     const data = {
       location: 'Another Test location',

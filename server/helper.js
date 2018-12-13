@@ -106,6 +106,7 @@ export const validateUrl = async (request, response, next) => {
       error: 'Invalid URL',
     });
   }
+  if (request.recordType === 'interventions') request.recordType = 'intervention';
   const idExists = await recordFieldExists(request.params.id, request.recordType);
   if (!idExists) {
     return response.status(404).json({

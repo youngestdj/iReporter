@@ -48,10 +48,13 @@ const query3 = `INSERT into records(
   'today', '1', 'red-flags', 'Lagos', 'Test comment', 'Test title')`;
 const query4 = `INSERT into records(
   createdOn, createdBy, type, location, comment, title) VALUES(
-  'today', '1', 'red-flags', 'Lagos', 'Test comment', 'Test title')`;
+  'today', '1', 'intervention', 'Lagos', 'Test comment', 'Test title')`;
 const query5 = `INSERT into records(
   createdOn, createdBy, type, location, comment, title) VALUES(
-  'today', '1', 'red-flags', 'Lagos', 'Test comment', 'Test title')`;
+  'today', '1', 'intervention', 'Lagos', 'Test comment', 'Test title')`;
+const query7 = `INSERT into records(
+  createdOn, createdBy, type, location, comment, title) VALUES(
+  'today', '1', 'intervention', 'Lagos', 'Test comment', 'Test title')`;
 const query6 = 'select id from records';
 
 
@@ -63,6 +66,7 @@ pool.query(createTableUsers).then((res) => {
           pool.query(query3).then((res) => {
             pool.query(query4).then((res) => {
               pool.query(query5).then((res) => {
+                  pool.query(query7).then((res) => {
                 pool.query(query6).then(res => console.log(res));
               });
             });
@@ -71,4 +75,5 @@ pool.query(createTableUsers).then((res) => {
       });
     });
   });
+});
 });
