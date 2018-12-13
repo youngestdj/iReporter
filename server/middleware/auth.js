@@ -58,7 +58,7 @@ class Auth {
    */
   static verifyAdmin(request, response, next) {
     const { isadmin } = request;
-    if (isadmin !== true) {
+    if (isadmin !== 'true') {
       return response.status(500).json({
         status: 500,
         auth: false,

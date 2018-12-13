@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import app from '../../server';
 
 const token = process.env.TEST_TOKEN;
+const adminToken = process.env.TEST_TOKEN_ADMIN;
 
 describe('Server', () => {
   const appInstance = app.listen();
@@ -365,6 +366,46 @@ describe('Server', () => {
         });
     });
   });
+
+  describe('PATCH /api/v1/red-flags/:id/status', () => {
+    const data = {
+      status: 'Another Test status',
+    };
+
+    it('should return 422 for invalid data', async () => {
+      await supertest(appInstance)
+        .patch('/api/v1/red-flags/2/status')
+        .send()
+        .set('content-type', 'application/json')
+        .set('x-access-token', adminToken)
+        .expect((res) => {
+          expect(res.statusCode).toBe(422);
+        });
+    });
+
+    it('should return 404 for record not found', async () => {
+      await supertest(appInstance)
+        .patch('/api/v1/red-flags/100/status')
+        .send(data)
+        .set('content-type', 'application/json')
+        .set('x-access-token', adminToken)
+        .expect((res) => {
+          expect(res.statusCode).toBe(404);
+        });
+    });
+
+    it('should return 400 for invalid url', async () => {
+      await supertest(appInstance)
+        .patch('/api/v1/red-flags/gbiy/status')
+        .send(data)
+        .set('content-type', 'application/json')
+        .set('x-access-token', adminToken)
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+  });
+
 
   describe('DELETE /api/v1/red-flags/:id', () => {
     it('should return 200 for successful request', async () => {

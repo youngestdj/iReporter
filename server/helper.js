@@ -127,13 +127,16 @@ export const getRecordType = async (request, response, next) => {
 };
 export const validateRecordType = async (request, response, next) => {
   if ((request.recordField === 'location' && !request.body.location)
-    || (request.recordField === 'comment' && !request.body.comment)) {
+    || (request.recordField === 'comment' && !request.body.comment)
+    || (request.recordField === 'status' && !request.body.status)) {
     return response.status(422).json({
       status: 422,
       error: 'Invalid data',
     });
   }
-  request.content = (request.body.comment) ? request.body.comment : request.body.location;
+  if (request.recordField === 'location') request.content = request.body.location;
+  else if (request.recordField === 'comment') request.content = request.body.comment;
+  else if (request.recordField === 'status') request.content = request.body.status;
   next();
 };
 
