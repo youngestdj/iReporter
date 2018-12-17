@@ -96,7 +96,7 @@ export const fieldsAreNotLetters = async (requestBody) => {
 export const dateString = () => {
   // set date up
   const dateObj = new Date();
-  return `${dateObj.getFullYear()} / ${(dateObj.getMonth() + 1)} / ${dateObj.getDate()}`;
+  return `${dateObj.getFullYear()}/${(dateObj.getMonth() + 1)}/${dateObj.getDate()}`;
 };
 
 export const validateUrl = async (request, response, next) => {

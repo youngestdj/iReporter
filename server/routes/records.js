@@ -23,5 +23,6 @@ router.patch('/interventions/:id/status', Auth.verifyAdmin, getRecordType, valid
 router.patch('/red-flags/:id/comment', getRecordType, validateUrl, validateRecordType, Records.updateRecord);
 router.patch('/interventions/:id/comment', getRecordType, validateUrl, validateRecordType, Records.updateRecord);
 router.delete('/red-flags/:id', getRecordType, validateUrl, validateRecordField, Records.deleteRecord);
+router.delete('/interventions/:id', getRecordType, validateUrl, validateRecordField, Records.deleteRecord);
 
 module.exports = router;

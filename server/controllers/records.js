@@ -27,13 +27,11 @@ class Records {
     const images = (request.body.images) ? request.body.images : '';
     const videos = (request.body.videos) ? request.body.videos : '';
     const createdBy = (request.body.createdby) ? request.body.createdby : request.userid;
-
     const data = {
       title, createdOn, type, location, comment, images, videos, createdBy,
     };
 
     const message = `Created ${type} record`;
-
     const id = await RecordsModel.createRecord(data);
     return response.status(201).json({
       status: 201,
@@ -117,7 +115,7 @@ class Records {
   static async deleteRecord(request, response) {
     RecordsModel.deleteRecord(request.params.id);
     const message = `${request.recordType} record has been deleted`;
-    response.status(200).json({
+    return response.status(200).json({
       status: 200,
       data: [{
         id: request.params.id,
