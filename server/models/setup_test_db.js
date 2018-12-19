@@ -38,7 +38,7 @@ const query = `INSERT into ireporter_users(
 
 const query8 = `INSERT into ireporter_users(
   email, firstname, lastname, othernames, username, registered, phonenumber, password) VALUES(
-  'jessam1@joyson.com', 'john', 'doe', 'jaime', 'lannister', 'today', '123456789', '${hashedPwd}')`;
+  'jessam1@joyson.com', 'john', 'doe', 'jaime', 'lannister1', 'today', '123456789', '${hashedPwd}')`;
 
 const query1 = `INSERT into records(
   createdOn, createdBy, type, location, comment, title) VALUES(

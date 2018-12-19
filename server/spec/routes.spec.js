@@ -628,4 +628,312 @@ describe('Server', () => {
         });
     });
   });
+
+  describe('POST /api/v1/auth/signup', () => {
+    const data = {
+      firstname: 'firstname',
+      lastname: 'lastname',
+      othernames: 'other',
+      username: 'anewusername',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'test@domain.com',
+    };
+    const dataNoFirstName = {
+      lastname: 'lastname',
+      othernames: 'other',
+      username: 'anewusername',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'test@domain.com',
+     };
+    const dataNoLastName = {
+      firstname: 'firstname',
+      othernames: 'other',
+      username: 'anewusername',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'test@domain.com',
+      };
+    const dataNoOtherNames = {
+      firstname: 'firstname',
+      lastname: 'lastname',
+      username: 'anewusername',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'test@domain.com',
+      };
+    const dataNoUsername = {
+      firstname: 'firstname',
+      lastname: 'lastname',
+      othernames: 'other',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'test@domain.com',
+     };
+    const dataNoPassword = {
+      firstname: 'firstname',
+      lastname: 'lastname',
+      othernames: 'other',
+      phonenumber: '0123456789',
+      username: 'abcdef',
+      email: 'test@domain.com',
+     };
+    const dataNoEmail= {
+      firstname: 'firstname',
+      lastname: 'lastname',
+      othernames: 'other',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      username: 'test@domain.com',
+     };
+    const dataFirstNameInvalid= {
+      firstname: 'firstname123',
+      lastname: 'lastname',
+      othernames: 'other',
+      username: 'anewusername',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'test@domain.com',
+    };
+    const dataLastNameInvalid= {
+      firstname: 'firstname',
+      lastname: 'lastname123',
+      othernames: 'other',
+      username: 'anewusername',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'test@domain.com',
+    };
+    const dataOtherNamesInvalid= {
+      firstname: 'firstname',
+      lastname: 'lastname',
+      othernames: 'othersdf1212',
+      username: 'anewusername',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'test@domain.com',
+    };
+    const dataEmailInvalid= {
+      firstname: 'firstname',
+      lastname: 'lastname',
+      othernames: 'othersdf',
+      username: 'anewusername',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'testdomain.com',
+    };
+    const dataEmailExists= {
+      firstname: 'firstname',
+      lastname: 'lastname',
+      othernames: 'othersdf',
+      username: 'anewusername',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'jessam@joyson.com',
+    };
+    const dataUsernameExists= {
+      firstname: 'firstname',
+      lastname: 'lastname',
+      othernames: 'othersdf',
+      username: 'lannister',
+      phonenumber: '0123456789',
+      password: 'abcdef',
+      email: 'jessam@joyson.com',
+    };
+    it('Should return 201 for content created', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(data)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(201);
+        });
+    });
+
+    it('Should return 400 for invalid data', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send()
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no firstname', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataNoFirstName)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no lastname', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataNoLastName)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no othernames', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataNoOtherNames)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no password', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataNoPassword)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no email', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataNoEmail)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 400 for no username', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataNoUsername)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('Should return 422 for invalid firstname', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataFirstNameInvalid)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(422);
+        });
+    });
+    it('Should return 422 for invalid lastname', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataLastNameInvalid)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(422);
+        });
+    });
+    it('Should return 422 for invalid othernames', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataOtherNamesInvalid)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(422);
+        });
+    });
+    it('Should return 422 for invalid Email', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataEmailInvalid)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(422);
+        });
+    });
+    it('Should return 409 for Email exists', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataEmailExists)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(409);
+        });
+    });
+    it('Should return 409 for Username exists', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/signup')
+        .send(dataUsernameExists)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(409);
+        });
+    });
+  });
+
+  describe('POST /api/v1/auth/login', () => {
+    const data = { email: 'jessam@joyson.com', password: 'abcdef' };
+    const dataOnlySpaces = { email: '  ', password: '  ' };
+    const dataNoEmail = { password: 'abcdef'};
+    const dataNoPassword = { email: 'jessam@joyson.com' };
+    const dataEmailInvalid = { email: 'jessam12312@joyson.com', password: 'abcdef' };
+    const dataPasswordInvalid = { email: 'jessam@joyson.com', password: '121345' };
+
+    it('should return 200 for successful request', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/login')
+        .send(data)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(200);
+        });
+    });
+
+    it('should return 404 for only spaces', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/login')
+        .send(dataOnlySpaces)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('should return 400 for no email', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/login')
+        .send(dataNoEmail)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('should return 400 for no password', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/login')
+        .send(dataNoPassword)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('should return 400 for invalid email', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/login')
+        .send(dataEmailInvalid)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+    it('should return 400 for no invalid password', async () => {
+      await supertest(appInstance)
+        .post('/api/v1/auth/login')
+        .send(dataPasswordInvalid)
+        .set('content-type', 'application/json')
+        .expect((res) => {
+          expect(res.statusCode).toBe(400);
+        });
+    });
+  });
+
+
 });
