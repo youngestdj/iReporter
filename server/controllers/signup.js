@@ -3,7 +3,7 @@ import SignupModel from '../models/signup';
 import {
   fieldExists,
   isEmail,
-  fieldsAreFilled,
+  fieldsAreNotFilled,
   fieldsAreNotLetters,
   dateString,
 } from '../helper';
@@ -20,9 +20,9 @@ class Signup {
    */
   static async invalidData(request) {
   // check if all fields are filled
-    const validData = await fieldsAreFilled(request.body);
-    if (!validData) {
-      return [400, 'Invalid data. Ensure that all fields are filled'];
+    const validData = await fieldsAreNotFilled(request.body);
+    if (validData) {
+      return [400, validData];
     }
 
     // check if all alphabetic fields are valid

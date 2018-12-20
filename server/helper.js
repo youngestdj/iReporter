@@ -45,7 +45,7 @@ export const isEmail = (email) => {
 
 export const validLogin = async (email, password) => {
   if (email && password) {
-    if (email.split(' ').join().length > 1 && password.split(' ').join('').length > 1) {
+    if (email.trim().length > 1 && password.trim().length > 1) {
       return true;
     }
   }
@@ -64,33 +64,25 @@ export const recordFieldExists = async (id, type) => {
   return result.rows[0];
 };
 
-export const fieldsAreFilled = (requestBody) => {
-  if (requestBody.firstname && requestBody.lastname) {
-    if (requestBody.email && requestBody.phonenumber) {
-      if (requestBody.password && requestBody.username) {
-        if (requestBody.othernames) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
+export const fieldsAreNotFilled = (requestBody) => {
+  let error;
+  if (!requestBody.firstname) error = 'Firstname cannot be empty';
+  if (!requestBody.lastname) error = 'Lastname cannot be empty';
+  if (!requestBody.email) error = 'Email cannot be empty'; 
+  if (!requestBody.phonenumber) error = 'Phone number cannot be empty';
+  if (!requestBody.password) error = 'Password cannot be empty';
+  if (!requestBody.username) error = 'Username cannot be empty';
+  if (!requestBody.othernames) error = 'Other names cannot be empty';
+  return (error)? error : false;
 };
 
 export const fieldsAreNotLetters = async (requestBody) => {
-  if (!isLetter(requestBody.firstname)) {
-    return 'Invalid firstname. Please enter only letters';
-  }
-  if (!isLetter(requestBody.lastname)) {
-    return 'Invalid lastname. Please enter only letters';
-  }
-  if (!isLetter(requestBody.othernames)) {
-    return 'Invalid other names. Please enter only letters';
-  }
-  if (!isAlphaNumeric(requestBody.username)) {
-    return 'Invalid username. Username should only contain letters and numbers';
-  }
-  return false;
+  let error;
+  if (!isLetter(requestBody.firstname)) error = 'Invalid firstname. Please enter only letters';
+  if (!isLetter(requestBody.lastname)) error = 'Invalid lastname. Please enter only letters';
+  if (!isLetter(requestBody.othernames)) error = 'Invalid other names. Please enter only letters';
+  if (!isAlphaNumeric(requestBody.username)) error = 'Invalid username. Username should only contain letters and numbers';
+  return (error)? error : false;
 };
 
 export const dateString = () => {
