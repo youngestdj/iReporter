@@ -48,8 +48,10 @@ class Login {
 
     response.status(200).json({
       status: 200,
-      token,
-      user: userObj,
+      data: [{
+        token,
+        user: userObj,
+      }],
     });
   }
 }
