@@ -54,7 +54,6 @@ const postData = async (details) => {
     );
     const response = await fetchResult;
     const jsonData = await response.json();
-    console.log(jsonData);
 
     if(jsonData.status === 201) {
       clearFormData();

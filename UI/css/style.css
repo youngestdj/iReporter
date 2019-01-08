@@ -295,7 +295,9 @@ button.fade:hover {
 	background-color: #efe;
 	border: #afa solid 1px;
 }
-
+#success a {
+	color: #000;
+}
 
 
 @media(max-width:768px){
