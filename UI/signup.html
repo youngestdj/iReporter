@@ -6,7 +6,7 @@
 
  	<title>iReporter - Sign up</title>
  	<link rel="stylesheet" href="css/style.css">
-
+ 	<script src="js/cookies.js"></script>
  </head>
 
  <body>
@@ -28,7 +28,9 @@
  	<section class="signup">
  		<div class="container">
  			<h2>Sign up</h2>
- 			<form>
+ 			<form name="signup">
+ 				<div id="error"></div>
+ 				<div id="success"></div>
  				<input type="text" name="firstname" placeholder="First name">
  				<input type="text" name="lastname" placeholder="Last name">
  				<input type="text" name="othernames" placeholder="Other names">
@@ -36,7 +38,7 @@
  				<input type="phone" name="phone" placeholder="Phone number">
  				<input type="text" name="username" placeholder="Username">
  				<input type="password" name="password" placeholder="password">
-	  			<button>Sign up</button>
+	  			<button id="submit">Sign up</button>
 			</form>
  		</div>
  	</section>
@@ -52,6 +54,8 @@
  			<a href="user_records.html">User records</a>
  		</div>
  	</footer>
+ 	<script src="js/main.js"></script>
+ 	<script src="js/signup.js"></script>
 
  </body>
 </html>
