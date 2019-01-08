@@ -277,6 +277,25 @@ button.fade:hover {
 	height: 50px;
 	width: 50px;
 }
+#error, #success {
+	background-color: #fee;
+	padding: 10px;
+	border: #faa solid 1px;
+	visibility: hidden;
+	color: #555;
+	position: -webkit-sticky;
+    position: sticky;
+    top:0px;
+}
+.error, #error {
+	background-color: #fcc;
+	color: #f55;
+}
+#success {
+	background-color: #efe;
+	border: #afa solid 1px;
+}
+
 
 
 @media(max-width:768px){
