@@ -6,7 +6,7 @@
 
  	<title>iReporter - Log in</title>
  	<link rel="stylesheet" href="css/style.css">
-
+ 	<script src="js/cookies.js"></script>
  </head>
 
  <body>
@@ -28,10 +28,12 @@
  	<section class="login">
  		<div class="container">
  			<h2>Log in</h2>
- 			<form>
+ 			<form name="signup">
+ 				<div id="error"></div>
+ 				<div id="success"></div>
  				<input type="email" name="email" placeholder="Email">
  				<input type="password" name="password" placeholder="password">
-	  			<button>Log in</button>
+	  			<button id="submit">Log in</button>
 			</form>
  		</div>
  	</section>
@@ -47,6 +49,8 @@
  			<a href="user_records.html">User records</a>
  		</div>
  	</footer>
+ 	<script src="js/main.js"></script>
+ 	<script src="js/login.js"></script>
 
  </body>
 </html>
