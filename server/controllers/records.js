@@ -51,8 +51,8 @@ class Records {
   static async getRecords(request, response) {
     let type = request.route.path.substr(1);
     if (type === 'interventions') type = 'intervention';
-    const records = await RecordsModel.getAllRecords(type);
-    response.status(200).json({
+    const records = await RecordsModel.getAllRecords(type, request.userid, request.isadmin);
+    return response.status(200).json({
       status: 200,
       data: records,
     });
@@ -66,7 +66,7 @@ class Records {
  */
   static async getSpecificRecord(request, response) {
     const record = await RecordsModel.getSpecificRecord(request.params.id);
-    response.status(200).json({
+    return response.status(200).json({
       status: 200,
       data: [record],
     });
@@ -97,7 +97,7 @@ class Records {
 
     await RecordsModel.updateField(request.params.id, data);
     const message = `Updated ${request.recordType} ${request.recordField}`;
-    response.status(200).json({
+    return response.status(200).json({
       status: 200,
       data: [{
         id: request.params.id,

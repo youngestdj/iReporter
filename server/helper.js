@@ -68,12 +68,12 @@ export const fieldsAreNotFilled = (requestBody) => {
   let error;
   if (!requestBody.firstname) error = 'Firstname cannot be empty';
   if (!requestBody.lastname) error = 'Lastname cannot be empty';
-  if (!requestBody.email) error = 'Email cannot be empty'; 
+  if (!requestBody.email) error = 'Email cannot be empty';
   if (!requestBody.phonenumber) error = 'Phone number cannot be empty';
   if (!requestBody.password) error = 'Password cannot be empty';
   if (!requestBody.username) error = 'Username cannot be empty';
   if (!requestBody.othernames) error = 'Other names cannot be empty';
-  return (error)? error : false;
+  return (error) || false;
 };
 
 export const fieldsAreNotLetters = async (requestBody) => {
@@ -82,7 +82,7 @@ export const fieldsAreNotLetters = async (requestBody) => {
   if (!isLetter(requestBody.lastname)) error = 'Invalid lastname. Please enter only letters';
   if (!isLetter(requestBody.othernames)) error = 'Invalid other names. Please enter only letters';
   if (!isAlphaNumeric(requestBody.username)) error = 'Invalid username. Username should only contain letters and numbers';
-  return (error)? error : false;
+  return (error) || false;
 };
 
 export const dateString = () => {
