@@ -31,6 +31,3 @@ const extendCookie = (name, value, days) => {
   const expires = `expires=${date.toUTCString()}`;
   document.cookie = `${name}=${value}; ${expires}; path=/`;
 };
-
-//(!checkCookie('iReporterToken'))? window.location.replace("login.html") : extendCookie('iReporterToken', getCookie('iReporterToken'), 30);
-;
