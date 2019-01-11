@@ -1,9 +1,8 @@
-/**if (checkCookie('iReporterToken')) {
+if (checkCookie('iReporterToken')) {
+ 	alert('sfvb');
   extendCookie('iReporterToken', getCookie('iReporterToken'), 30);
   window.location.replace("create_record.html");
 }
-**/
-let email, password;
 
 const validateForm = () => {
   email = document.forms.signup.email.value;
@@ -19,8 +18,8 @@ const validateForm = () => {
 };
 
 const clearFormData = () => {
-  email = '';
-  password = '';
+  document.forms.signup.email.value = '';
+  document.forms.signup.password.value = '';
 }
 
 const postLogin = async (details) => {

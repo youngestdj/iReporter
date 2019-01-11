@@ -6,6 +6,8 @@
 
  	<title>iReporter - Create record</title>
  	<link rel="stylesheet" href="css/style.css">
+ 	<script src="js/cookies.js"></script>
+ 	<script src="js/check_cookies.js"></script>
 
  </head>
 
@@ -32,17 +34,19 @@
 repair bad road sections, collapsed bridges, flooding e.t.c).</p>
 			<div class="vertical-spacer"></div>
 
- 			<form>
+ 			<form name="createRecord">
+ 				<div id="error"></div>
+ 				<div id="success"></div>
  				<input type="text" name="title" placeholder="Record title">
- 				<select name="record-type">
- 					<option value=""selected="selected">Select record type</option>
- 					<option value="red-flag" class="option-style">Red flag</option>
- 					<option value="intervention" class="option-style">intervention</option>
+ 				<select name="recordType">
+ 					<option value="" selected="selected">Select record type</option>
+ 					<option value="red-flags" class="option-style">Red flag</option>
+ 					<option value="interventions" class="option-style">intervention</option>
  				</select>
  				<input type="text" name="longitude" placeholder="Location longitude">
- 				<input type="email" name="latitude" placeholder="Location latitude">
+ 				<input type="text" name="latitude" placeholder="Location latitude">
  				<textarea name="comment" placeholder="Comment on this record (Add addtional info)"></textarea>
-	  			<button>Create record</button>
+	  			<button id="submit">Create record</button>
 			</form>
  		</div>
  	</section>
@@ -58,6 +62,8 @@ repair bad road sections, collapsed bridges, flooding e.t.c).</p>
  			<a href="user_records.html">User records</a>
  		</div>
  	</footer>
+ 	<script src="js/main.js"></script>
+ 	<script src="js/create_record.js"></script>
 
  </body>
 </html>
