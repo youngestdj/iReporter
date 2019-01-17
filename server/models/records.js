@@ -22,10 +22,14 @@ class RecordsModel {
   /**
    * Get either intervention or red flag records from the database
    * @param  {string} type intervention or red-flags
+   * @param  {int} id userid
+   * @param  {string} isAdmin true or false
    * @return {object}      records object
    */
-  static async getAllRecords(type) {
-    const query = `SELECT * from records where type = '${type}'`;
+  static async getAllRecords(type, id, isAdmin) {
+    let query;
+    if (isAdmin === 'true') query = `SELECT * from records where type = '${type}'`;
+    else query = `SELECT * from records where type = '${type}' AND createdby = '${id}'`;
     const result = await pool.query(query);
     return result.rows;
   }
@@ -43,7 +47,7 @@ class RecordsModel {
   }
 
   /**
-   * Update a record'slocation
+   * Update a record's location
    * @param  {int} id   record id
    * @param  {object} data data
    * @return {boolean}      true

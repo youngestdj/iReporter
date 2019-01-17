@@ -473,7 +473,7 @@ describe('Server', () => {
     };
     const incorrectData = {
       status: 'any other status',
-    }
+    };
 
     it('should return 200 for successful request', async () => {
       await supertest(appInstance)
@@ -646,7 +646,7 @@ describe('Server', () => {
       phonenumber: '0123456789',
       password: 'abcdef',
       email: 'test@domain.com',
-     };
+    };
     const dataNoLastName = {
       firstname: 'firstname',
       othernames: 'other',
@@ -654,7 +654,7 @@ describe('Server', () => {
       phonenumber: '0123456789',
       password: 'abcdef',
       email: 'test@domain.com',
-      };
+    };
     const dataNoOtherNames = {
       firstname: 'firstname',
       lastname: 'lastname',
@@ -662,7 +662,7 @@ describe('Server', () => {
       phonenumber: '0123456789',
       password: 'abcdef',
       email: 'test@domain.com',
-      };
+    };
     const dataNoUsername = {
       firstname: 'firstname',
       lastname: 'lastname',
@@ -670,7 +670,7 @@ describe('Server', () => {
       phonenumber: '0123456789',
       password: 'abcdef',
       email: 'test@domain.com',
-     };
+    };
     const dataNoPassword = {
       firstname: 'firstname',
       lastname: 'lastname',
@@ -678,16 +678,16 @@ describe('Server', () => {
       phonenumber: '0123456789',
       username: 'abcdef',
       email: 'test@domain.com',
-     };
-    const dataNoEmail= {
+    };
+    const dataNoEmail = {
       firstname: 'firstname',
       lastname: 'lastname',
       othernames: 'other',
       phonenumber: '0123456789',
       password: 'abcdef',
       username: 'test@domain.com',
-     };
-    const dataFirstNameInvalid= {
+    };
+    const dataFirstNameInvalid = {
       firstname: 'firstname123',
       lastname: 'lastname',
       othernames: 'other',
@@ -696,7 +696,7 @@ describe('Server', () => {
       password: 'abcdef',
       email: 'test@domain.com',
     };
-    const dataLastNameInvalid= {
+    const dataLastNameInvalid = {
       firstname: 'firstname',
       lastname: 'lastname123',
       othernames: 'other',
@@ -705,7 +705,7 @@ describe('Server', () => {
       password: 'abcdef',
       email: 'test@domain.com',
     };
-    const dataOtherNamesInvalid= {
+    const dataOtherNamesInvalid = {
       firstname: 'firstname',
       lastname: 'lastname',
       othernames: 'othersdf1212',
@@ -714,7 +714,7 @@ describe('Server', () => {
       password: 'abcdef',
       email: 'test@domain.com',
     };
-    const dataEmailInvalid= {
+    const dataEmailInvalid = {
       firstname: 'firstname',
       lastname: 'lastname',
       othernames: 'othersdf',
@@ -723,7 +723,7 @@ describe('Server', () => {
       password: 'abcdef',
       email: 'testdomain.com',
     };
-    const dataEmailExists= {
+    const dataEmailExists = {
       firstname: 'firstname',
       lastname: 'lastname',
       othernames: 'othersdf',
@@ -732,7 +732,7 @@ describe('Server', () => {
       password: 'abcdef',
       email: 'jessam@joyson.com',
     };
-    const dataUsernameExists= {
+    const dataUsernameExists = {
       firstname: 'firstname',
       lastname: 'lastname',
       othernames: 'othersdf',
@@ -873,7 +873,7 @@ describe('Server', () => {
   describe('POST /api/v1/auth/login', () => {
     const data = { email: 'jessam@joyson.com', password: 'abcdef' };
     const dataOnlySpaces = { email: '  ', password: '  ' };
-    const dataNoEmail = { password: 'abcdef'};
+    const dataNoEmail = { password: 'abcdef' };
     const dataNoPassword = { email: 'jessam@joyson.com' };
     const dataEmailInvalid = { email: 'jessam12312@joyson.com', password: 'abcdef' };
     const dataPasswordInvalid = { email: 'jessam@joyson.com', password: '121345' };
@@ -934,6 +934,4 @@ describe('Server', () => {
         });
     });
   });
-
-
 });
