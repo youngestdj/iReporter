@@ -47,7 +47,7 @@ class RecordsModel {
   }
 
   /**
-   * Update a record'slocation
+   * Update a record's location
    * @param  {int} id   record id
    * @param  {object} data data
    * @return {boolean}      true
