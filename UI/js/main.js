@@ -23,3 +23,9 @@ const showError = (message) => {
 	error.style.visibility = 'visible';
 	error.innerHTML = message;
 };
+
+if (document.querySelector(".username")) {
+  const username = `@${getCookie("iReporterUsername")}`;
+  document.querySelector(".username").innerHTML = username;
+}
+
