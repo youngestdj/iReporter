@@ -12,7 +12,7 @@ const getCookie = (cookieName) => {
   for(let i = 0; i < cookieArr.length; i++) {
     let j = cookieArr[i];
     while (j.charAt(0) === ' ') {
-      j = cookieArr.substring(1);
+      j = j.substring(1);
     }
     if (j.indexOf(name) === 0) return j.substring(name.length, j.length);
   }
