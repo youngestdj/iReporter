@@ -6,6 +6,8 @@
 
  	<title>iReporter - User records</title>
  	<link rel="stylesheet" href="css/style.css">
+ 	<script src="js/cookies.js"></script>
+ 	<script src="js/check_cookies.js"></script>
 
  </head>
 
@@ -14,7 +16,7 @@
  		<div class="container">
 	 		<div class="logo"><a href="../index.html">iReporter</a></div>
 	 		<ul class="links">
-	 			<li><a href="profile.html">Profile</a></li>
+	 			<li><a href="profile.html"><span class="username"></span></a></li>
 	 			<li><a href="create_record.html">Create record</a></li>
 	 			<li><a href="logout.html">Logout</a></li>
 	 		</ul>
@@ -29,129 +31,17 @@
 
  	<section class="signup">
  		<div class="container">
- 			<h2>View records (5)</h2>
+ 			<h2>My records (<span class="recordCount"></span>)</h2>
+ 			<div id="error"></div>
+ 			<div id="success"></div>
  			<p>View all your records and edit the ones that are yet to be resolved</p>
-
- 			<div class="vertical-spacer"></div>
-
-			<div class="admin-record-group">
-				<fieldset>
-					<legend>(1) 22 - 11 - 2018</legend>
-					<div class="record-item">
-						<span class="title">Title:</span>
-						<span class="content">Sars beat my boyfriend up</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Coordinates:</span>
-						<span class="content">6.5244° N, 3.3792° E</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Status:</span>
-						<span class="content">New</span>
-					</div>
-					<div class="record-item">
-						<div class="title">Comment:</div>
-						<div class="content">Sars assaulted my boyfriend at ikeja. We didn't do anything wrong. They illegally searched our phones and computers and we complied.... <span class="see-more">see more</span></div>
-					</div>
-					<div class="record-item center">
-						<button class="edit">Edit</button>
-						<button class="delete">Delete</button>
-					</div>
-				</fieldset>
+ 			<h2>Red flags</h2>
+ 			<div class="red-flags">
 			</div>
 
-			<div class="admin-record-group">
-				<fieldset>
-					<legend>(2) 20 - 11 - 2018</legend>
-					<div class="record-item">
-						<span class="title">Title:</span>
-						<span class="content">Epileptic power supply</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Coordinates:</span>
-						<span class="content">6.5244° N, 3.3792° E</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Status:</span>
-						<span class="content">New</span>
-					</div>
-					<div class="record-item">
-						<div class="title">Comment:</div>
-						<div class="content">Sars assaulted my boyfriend at ikeja. We didn't do anything wrong. They illegally searched our phones and computers and we complied.... <span class="see-more">see more</span></div>
-					</div>
-					<div class="record-item center">
-						<button class="edit">Edit</button>
-						<button class="delete">Delete</button>
-					</div>
-				</fieldset>
+			<h2>Interventions</h2>
+ 			<div class="interventions">
 			</div>
-
-			<div class="admin-record-group">
-				<fieldset>
-					<legend>(3) 18 - 11 - 2018</legend>
-					<div class="record-item">
-						<span class="title">Title:</span>
-						<span class="content">Waste disposal problems</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Coordinates:</span>
-						<span class="content">6.5244° N, 3.3792° E</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Status:</span>
-						<span class="content">Resolved</span>
-					</div>
-					<div class="record-item">
-						<div class="title">Comment:</div>
-						<div class="content">Sars assaulted my boyfriend at ikeja. We didn't do anything wrong. They illegally searched our phones and computers and we complied.... <span class="see-more">see more</span></div>
-					</div>
-				</fieldset>
-			</div>
-
-			<div class="admin-record-group">
-				<fieldset>
-					<legend>(4) 18 - 11 - 2018</legend>
-					<div class="record-item">
-						<span class="title">Title:</span>
-						<span class="content">Impeach corrupt governors</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Coordinates:</span>
-						<span class="content">6.5244° N, 3.3792° E</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Status:</span>
-						<span class="content">Rejected</span>
-					</div>
-					<div class="record-item">
-						<div class="title">Comment:</div>
-						<div class="content">Sars assaulted my boyfriend at ikeja. We didn't do anything wrong. They illegally searched our phones and computers and we complied.... <span class="see-more">see more</span></div>
-					</div>
-				</fieldset>
-			</div>
-
-			<div class="admin-record-group">
-				<fieldset>
-					<legend>(5) 10 - 11 - 2017</legend>
-					<div class="record-item">
-						<span class="title">Title:</span>
-						<span class="content">Bad unusable roads</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Coordinates:</span>
-						<span class="content">6.5244° N, 3.3792° E</span>
-					</div>
-					<div class="record-item">
-						<span class="title">Status:</span>
-						<span class="content">Under investigation</span>
-					</div>
-					<div class="record-item">
-						<div class="title">Comment:</div>
-						<div class="content">Sars assaulted my boyfriend at ikeja. We didn't do anything wrong. They illegally searched our phones and computers and we complied.... <span class="see-more">see more</span></div>
-					</div>
-				</fieldset>
-			</div>
-
 
  		</div>
  	</section>
@@ -167,6 +57,9 @@
  			<a href="user_records.html">User records</a>
  		</div>
  	</footer>
+ 	<script src="js/main.js"></script>
+ 	<script src="js/user_records.js"></script>
+ 	<script src="js/my_records.js"></script>
 
  </body>
 </html>
